@@ -1,0 +1,26 @@
+participant User
+participant TelegramBot
+participant CurrencyManager
+participant ConvertorService
+
+User -> TelegramBot: /manage_currency (currency_id, rate)
+
+
+TelegramBot -> CurrencyManager: /add_currency (currency_id, rate)
+
+
+CurrencyManager -> TelegramBot: Response (success)
+
+
+TelegramBot -> User: Response (Currency added successfully)
+
+User -> TelegramBot: /convert (currency_code, amount)
+
+
+TelegramBot -> ConvertorService: /convert (currency_id, amount)
+
+
+ConvertorService -> TelegramBot: Response (converted_amount)
+
+
+TelegramBot -> User: Response (Converted amount: ...)
